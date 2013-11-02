@@ -1,0 +1,20 @@
+
+syntax: glob
+
+# Specific files
+Thumbs.db
+Desktop.ini
+.cmd.bat
+
+# File patterns
+*.layout
+*.depend
+*.orig
+
+# Specific folders
+bin
+obj
+
+# Folder patterns
+
+
