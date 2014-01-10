@@ -9,12 +9,8 @@ Desktop.ini
 # File patterns
 *.layout
 *.depend
-*.orig
 
 # Specific folders
+Generated
 bin
 obj
-
-# Folder patterns
-
-
