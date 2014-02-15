@@ -9,8 +9,8 @@
 		<Option show_notes="1">
 			<notes>
 				<![CDATA[Project uses the following libraries:
--Qt 4.8.5
--glut 3.7.6]]>
+-Qt 4.8.5 ( http://qt-project.org )
+-glut 3.7.6 ( http://www.opengl.org/resources/libraries/glut )]]>
 			</notes>
 		</Option>
 		<Build>
