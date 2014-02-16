@@ -24,8 +24,8 @@
 
 #include "glwidget.h"
 
-#include <QtGui/QtGui>
-#include <QtOpenGL/QtOpenGL>
+#include <QtGui/QMouseEvent>
+#include <QtGui/QWheelEvent>
 
 #include <math.h>
 #include <stdlib.h>

@@ -24,7 +24,16 @@
 
 #include "window.h"
 
-#include <QtGui/QtGui>
+#include <QtCore/QUrl>
+#include <QtCore/QMimeData>
+
+#include <QtGui/QHBoxLayout>
+#include <QtGui/QFileDialog>
+#include <QtGui/QKeyEvent>
+#include <QtGui/QDragEnterEvent>
+#include <QtGui/QColorDialog>
+#include <QtGui/QMessageBox>
+
 #include <windows.h>
 
 #include "glwidget.h"

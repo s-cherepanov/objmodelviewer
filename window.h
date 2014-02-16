@@ -25,14 +25,14 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include <qtGui/QtGui>
-#include <QtGui/QMainWindow>
-
 #include "Generated/window_ui.h"
 
 /*======================================== CLASSES =======================================*/
 
+QT_BEGIN_NAMESPACE
 class QSlider;
+QT_END_NAMESPACE
+
 class GLWidget;
 
 class Window : public QMainWindow

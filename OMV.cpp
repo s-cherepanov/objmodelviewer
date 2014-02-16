@@ -25,6 +25,8 @@
 #include <QtGui/QApplication>
 #include <QtGui/QDesktopWidget>
 
+#include <QtCore/QFileInfo>
+
 #include <windows.h>
 
 #include "window.h"
