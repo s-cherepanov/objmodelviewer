@@ -53,7 +53,8 @@ FILETYPE        VFT_APP
 	 }
   BLOCK "VarFileInfo"
 	 {
-		 VALUE "Translation", 0x0809, 1252 //language codes
+	     //-- language codes
+		 VALUE "Translation", 0x0809, 1252 // English (United Kingdom)
 	 }
 }
 

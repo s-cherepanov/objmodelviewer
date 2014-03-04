@@ -146,10 +146,10 @@ void Window::IsSmooth()
 void Window::About()
 {
     QMessageBox::about(this, "About Obj Model Viewer",
-                       "<b>Obj Model Viewer, version " + QString(APP_FILEVER) + "</b><br>" \
-                       "author: <a href=\"mailto:contact@techvoid.net\">Techvoid</a> " \
-                       "(<a href=\"http://techvoid.net\">website</a>)<br><br>" \
-                       "For more information check the readme file.");
+                       "<b>Obj Model Viewer</b>, version <b>" + QString(APP_FILEVER) + "</b><br>" \
+                       "<b>author:</b> " + QString(APP_COPYRIGHT) + "<br>" \
+                       "<b>website:</b> <a href=\"" + QString(APP_PRODUCTURL) + "\">sourceforge</a><br>" \
+                       "<br>For more information check the readme file.");
 }
 
 /*======================================= PROTECTED ======================================*/

@@ -31,11 +31,12 @@
 #define APP_FILEVER         "1.4.0"
 #define APP_FILEDESC        ""
 #define APP_INTERNALNAME    ""
-#define APP_COPYRIGHT       "Techvoid"
+#define APP_COPYRIGHT       "Marcin Piotrowski"
 #define APP_TRADEMARK       ""
 #define APP_ORIGINALNAME    ""
 #define APP_PRODUCTNAME     "Obj Model Viewer"
 #define APP_PRODUCTVER      ""
+#define APP_PRODUCTURL      "http://sourceforge.net/projects/objmodelviewer/"
 
 #endif // GLOBAL_H
 
