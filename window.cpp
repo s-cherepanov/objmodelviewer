@@ -45,6 +45,7 @@ Window::Window(QWidget *parent) :
     QMainWindow(parent)
 {
 	MainWindow.setupUi(this);
+    setWindowTitle(APP_PRODUCTNAME);
 	setAcceptDrops(true);
 
 	glWidget = new GLWidget(this);
@@ -102,7 +103,7 @@ bool Window::openFile(const QString &Path)
 
 	if(!fileName.isEmpty()){
         glWidget->readFromFile(fileName.toUtf8().data());
-		setWindowTitle("Obj Model Viewer ( " + fileName + " )");
+		setWindowTitle(QString("%1 ( %2 )").arg(APP_PRODUCTNAME).arg(fileName));
 		return true;
 	}
     return false;
@@ -145,11 +146,11 @@ void Window::IsSmooth()
 
 void Window::About()
 {
-    QMessageBox::about(this, "About Obj Model Viewer",
-                       "<b>Obj Model Viewer</b>, version <b>" + QString(APP_FILEVER) + "</b><br>" \
-                       "<b>author:</b> " + QString(APP_COPYRIGHT) + "<br>" \
-                       "<b>website:</b> <a href=\"" + QString(APP_PRODUCTURL) + "\">sourceforge</a><br>" \
-                       "<br>For more information check the readme file.");
+    QMessageBox::about(this, "About " + QString(APP_PRODUCTNAME),
+                       QString("<b>%1</b>, version <b>%2</b><br>").arg(APP_PRODUCTNAME).arg(APP_FILEVER) +
+                       QString("<b>author:</b> %1<br>").arg(APP_COPYRIGHT) +
+                       QString("<b>website:</b> <a href=\"%1\">sourceforge</a><br>").arg(APP_PRODUCTURL) +
+                       QString("<br>For more information check the readme file."));
 }
 
 /*======================================= PROTECTED ======================================*/
