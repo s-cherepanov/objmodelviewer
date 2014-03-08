@@ -5,7 +5,7 @@ syntax: glob
 Thumbs.db
 Desktop.ini
 .cmd.bat
-Distro/*.exe
+Release/*.exe
 
 # File patterns
 *.layout
