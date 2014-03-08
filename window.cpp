@@ -194,7 +194,7 @@ void Window::dropEvent(QDropEvent *event)
     if (MimeData->hasUrls()){
         QList<QUrl> UrlList = MimeData->urls();
         foreach(QUrl Url, UrlList){
-            QString File = Url.toLocalFile();
+            QString File = QFileInfo(Url.toLocalFile()).canonicalFilePath();
             if(openFile(File))
                 event->acceptProposedAction();
         }

@@ -25,6 +25,7 @@
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+
 #define APP_VERSION         1,4,0,0
 #define APP_FILEICON        "Resources/icon.ico"
 #define APP_COMPANY         ""
@@ -37,6 +38,7 @@
 #define APP_PRODUCTNAME     "Obj Model Viewer"
 #define APP_PRODUCTVER      ""
 #define APP_PRODUCTURL      "http://sourceforge.net/projects/objmodelviewer/"
+
 
 #endif // GLOBAL_H
 

@@ -5,6 +5,7 @@ syntax: glob
 Thumbs.db
 Desktop.ini
 .cmd.bat
+Distro/*.exe
 
 # File patterns
 *.layout
@@ -12,5 +13,4 @@ Desktop.ini
 
 # Specific folders
 Generated
-bin
 obj
