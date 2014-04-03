@@ -44,68 +44,68 @@
 Window::Window(QWidget *parent) :
     QMainWindow(parent)
 {
-	MainWindow.setupUi(this);
+    MainWindow.setupUi(this);
     setWindowTitle(APP_PRODUCTNAME);
-	setAcceptDrops(true);
+    setAcceptDrops(true);
 
-	glWidget = new GLWidget(this);
-	xSlider = createSlider();
-	ySlider = createSlider();
-	zSlider = createSlider();
-	disSlider = createZoomSlider();
+    glWidget = new GLWidget(this);
+    xSlider = createSlider();
+    ySlider = createSlider();
+    zSlider = createSlider();
+    disSlider = createZoomSlider();
 
-	//x,y,z rotation sliders
-	connect(xSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setXRotation(int)));
-	connect(glWidget, SIGNAL(xRotationChanged(int)), xSlider, SLOT(setValue(int)));
-	connect(ySlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setYRotation(int)));
-	connect(glWidget, SIGNAL(yRotationChanged(int)), ySlider, SLOT(setValue(int)));
-	connect(zSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setZRotation(int)));
-	connect(glWidget, SIGNAL(zRotationChanged(int)), zSlider, SLOT(setValue(int)));
+    //x,y,z rotation sliders
+    connect(xSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setXRotation(int)));
+    connect(glWidget, SIGNAL(xRotationChanged(int)), xSlider, SLOT(setValue(int)));
+    connect(ySlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setYRotation(int)));
+    connect(glWidget, SIGNAL(yRotationChanged(int)), ySlider, SLOT(setValue(int)));
+    connect(zSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setZRotation(int)));
+    connect(glWidget, SIGNAL(zRotationChanged(int)), zSlider, SLOT(setValue(int)));
 
-	//distance slider
-	connect(disSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setDistance(int)));
-	connect(glWidget, SIGNAL(distanceChanged(int)), disSlider, SLOT(setValue(int)));
+    //distance slider
+    connect(disSlider, SIGNAL(valueChanged(int)), glWidget, SLOT(setDistance(int)));
+    connect(glWidget, SIGNAL(distanceChanged(int)), disSlider, SLOT(setValue(int)));
 
-	//buttons - file
-	connect(MainWindow.actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
-	connect(MainWindow.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
-	connect(MainWindow.actionExit, SIGNAL(triggered()), this, SLOT(close()));
+    //buttons - file
+    connect(MainWindow.actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
+    connect(MainWindow.actionAbout, SIGNAL(triggered()), this, SLOT(About()));
+    connect(MainWindow.actionExit, SIGNAL(triggered()), this, SLOT(close()));
 
-	//buttons - options
-	connect(MainWindow.actionSliders, SIGNAL(triggered()), this, SLOT(IsSliders()));
-	connect(MainWindow.actionSmooth, SIGNAL(triggered()), this, SLOT(IsSmooth()));
-	connect(MainWindow.actionStatistics, SIGNAL(triggered()), this, SLOT(IsStats()));
-	connect(MainWindow.actionWireframe, SIGNAL(triggered()), this, SLOT(IsWireframe()));
-	connect(MainWindow.actionBg_color, SIGNAL(triggered()), this, SLOT(PickColor()));
+    //buttons - options
+    connect(MainWindow.actionSliders, SIGNAL(triggered()), this, SLOT(IsSliders()));
+    connect(MainWindow.actionSmooth, SIGNAL(triggered()), this, SLOT(IsSmooth()));
+    connect(MainWindow.actionStatistics, SIGNAL(triggered()), this, SLOT(IsStats()));
+    connect(MainWindow.actionWireframe, SIGNAL(triggered()), this, SLOT(IsWireframe()));
+    connect(MainWindow.actionBg_color, SIGNAL(triggered()), this, SLOT(PickColor()));
 
-	QHBoxLayout *mainLayout = new QHBoxLayout(this);
-	mainLayout->addWidget(glWidget);
-	mainLayout->addWidget(xSlider);
-	mainLayout->addWidget(ySlider);
-	mainLayout->addWidget(zSlider);
-	mainLayout->addWidget(disSlider);
-	MainWindow.centralWidget->setLayout(mainLayout);
+    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout->addWidget(glWidget);
+    mainLayout->addWidget(xSlider);
+    mainLayout->addWidget(ySlider);
+    mainLayout->addWidget(zSlider);
+    mainLayout->addWidget(disSlider);
+    MainWindow.centralWidget->setLayout(mainLayout);
 
-	xSlider->setValue(0 * 16);
-	ySlider->setValue(0 * 16);
-	zSlider->setValue(0 * 16);
-	disSlider->setValue(-1);
+    xSlider->setValue(0 * 16);
+    ySlider->setValue(0 * 16);
+    zSlider->setValue(0 * 16);
+    disSlider->setValue(-1);
 }
 
 /*===================================== PUBLIC SLOTS =====================================*/
 
 bool Window::openFile(const QString &Path)
 {
-    if(Path.isNull())
+    if (Path.isNull())
         fileName = QFileDialog::getOpenFileName(this,"Choose a file to open",
-                                    NULL, "wavefront format (*.obj)");
+                                                NULL, "wavefront format (*.obj)");
     else fileName = Path;
 
-	if(!fileName.isEmpty()){
+    if (!fileName.isEmpty()) {
         glWidget->readFromFile(fileName.toUtf8().data());
-		setWindowTitle(QString("%1 ( %2 )").arg(APP_PRODUCTNAME).arg(fileName));
-		return true;
-	}
+        setWindowTitle(QString("%1 ( %2 )").arg(APP_PRODUCTNAME).arg(fileName));
+        return true;
+    }
     return false;
 }
 
@@ -113,15 +113,15 @@ bool Window::openFile(const QString &Path)
 
 void Window::PickColor()
 {
-	glWidget->bgColor = QColorDialog::getColor();
+    glWidget->bgColor = QColorDialog::getColor();
 }
 
 void Window::SetSliders(bool value)
 {
-	xSlider->setShown(value);
-	ySlider->setShown(value);
-	zSlider->setShown(value);
-	disSlider->setShown(value);
+    xSlider->setShown(value);
+    ySlider->setShown(value);
+    zSlider->setShown(value);
+    disSlider->setShown(value);
 }
 
 void Window::IsSliders()
@@ -157,21 +157,21 @@ void Window::About()
 
 void Window::keyPressEvent(QKeyEvent *event)
 {
-	if (event->key() == Qt::Key_Escape)
-		close();
-	else
-		QWidget::keyPressEvent(event);
+    if (event->key() == Qt::Key_Escape)
+        close();
+    else
+        QWidget::keyPressEvent(event);
 }
 
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
 
     const QMimeData *MimeData = event->mimeData();
-    if (MimeData->hasUrls()){
+    if (MimeData->hasUrls()) {
         QList<QUrl> UrlList = MimeData->urls();
-        foreach(QUrl Url, UrlList){
+        foreach(QUrl Url, UrlList) {
             QFileInfo File(Url.toLocalFile());
-            if(File.suffix() == "obj"){
+            if (File.suffix() == "obj") {
                 event->acceptProposedAction();
             }
         }
@@ -191,11 +191,11 @@ void Window::dragLeaveEvent(QDragLeaveEvent *event)
 void Window::dropEvent(QDropEvent *event)
 {
     const QMimeData *MimeData = event->mimeData();
-    if (MimeData->hasUrls()){
+    if (MimeData->hasUrls()) {
         QList<QUrl> UrlList = MimeData->urls();
-        foreach(QUrl Url, UrlList){
+        foreach(QUrl Url, UrlList) {
             QString File = QFileInfo(Url.toLocalFile()).canonicalFilePath();
-            if(openFile(File))
+            if (openFile(File))
                 event->acceptProposedAction();
         }
     }
@@ -205,24 +205,24 @@ void Window::dropEvent(QDropEvent *event)
 
 QSlider *Window::createSlider()
 {
-	QSlider *slider = new QSlider(Qt::Vertical);
-	slider->setRange(0, 360 * 16);
-	slider->setSingleStep(16);
-	slider->setPageStep(15 * 16);
-	slider->setTickInterval(15 * 16);
-	slider->setTickPosition(QSlider::TicksRight);
-	return slider;
+    QSlider *slider = new QSlider(Qt::Vertical);
+    slider->setRange(0, 360 * 16);
+    slider->setSingleStep(16);
+    slider->setPageStep(15 * 16);
+    slider->setTickInterval(15 * 16);
+    slider->setTickPosition(QSlider::TicksRight);
+    return slider;
 }
 
 QSlider *Window::createZoomSlider()
 {
-	QSlider *slider = new QSlider(Qt::Vertical);
-	slider->setRange(-12, 12);
-	slider->setSingleStep(1);
-	slider->setPageStep(1);
-	slider->setTickInterval(1);
-	slider->setTickPosition(QSlider::TicksRight);
-	return slider;
+    QSlider *slider = new QSlider(Qt::Vertical);
+    slider->setRange(-12, 12);
+    slider->setSingleStep(1);
+    slider->setPageStep(1);
+    slider->setTickInterval(1);
+    slider->setTickPosition(QSlider::TicksRight);
+    return slider;
 }
 
 /*========================================================================================*/

@@ -36,32 +36,31 @@
 
 int main(int argc, char *argv[])
 {
-	QApplication app(argc, argv);
-	QStringList arguments = app.arguments();
-	arguments.takeFirst();
+    QApplication app(argc, argv);
+    QStringList arguments = app.arguments();
+    arguments.takeFirst();
 
-	Window win;
-	win.resize(win.sizeHint());
+    Window win;
+    win.resize(win.sizeHint());
 
-	foreach(QString argument, arguments)
-	{
+    foreach(QString argument, arguments) {
         QFileInfo file(argument);
-        if(file.isFile())
+        if (file.isFile())
             win.openFile(file.fileName());
 
-	    if(argument == "debug")
+        if (argument == "debug")
             Console con;
-	}
+    }
 
-	int desktopArea = QApplication::desktop()->width() *
-		QApplication::desktop()->height();
-	int widgetArea = win.width() * win.height();
-	if (((float)widgetArea / (float)desktopArea) < 0.75f)
-		win.show();
-	else
-		win.showMaximized();
+    int desktopArea = QApplication::desktop()->width() *
+                      QApplication::desktop()->height();
+    int widgetArea = win.width() * win.height();
+    if (((float)widgetArea / (float)desktopArea) < 0.75f)
+        win.show();
+    else
+        win.showMaximized();
 
-	return app.exec();
+    return app.exec();
 }
 
 /*========================================================================================*/

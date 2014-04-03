@@ -37,47 +37,47 @@ class GLWidget;
 
 class Window : public QMainWindow
 {
-	Q_OBJECT
+        Q_OBJECT
 
-public:
-	Window(QWidget *parent = 0);
+    public:
+        Window(QWidget *parent = 0);
 
-public slots:
-    bool openFile(const QString &Path = QString());
+    public slots:
+        bool openFile(const QString &Path = QString());
 
-private slots:
-	void IsSliders();
-	void IsSmooth();
-	void IsWireframe();
-	void IsStats();
-	void PickColor();
-	void SetSliders(bool value);
-	void About();
+    private slots:
+        void IsSliders();
+        void IsSmooth();
+        void IsWireframe();
+        void IsStats();
+        void PickColor();
+        void SetSliders(bool value);
+        void About();
 
-protected:
-	void keyPressEvent(QKeyEvent *event);
-    void dragEnterEvent(QDragEnterEvent *event);
-    void dragMoveEvent(QDragMoveEvent *event);
-    void dragLeaveEvent(QDragLeaveEvent *event);
-    void dropEvent(QDropEvent *event);
+    protected:
+        void keyPressEvent(QKeyEvent *event);
+        void dragEnterEvent(QDragEnterEvent *event);
+        void dragMoveEvent(QDragMoveEvent *event);
+        void dragLeaveEvent(QDragLeaveEvent *event);
+        void dropEvent(QDropEvent *event);
 
-private:
-	Ui_windowClass MainWindow;
+    private:
+        Ui_windowClass MainWindow;
 
-	QString fileName;
-	QAction *openAct;
-	QAction *OptionsAct;
-	QAction *AboutAct;
-	QAction *exitAct;
+        QString fileName;
+        QAction *openAct;
+        QAction *OptionsAct;
+        QAction *AboutAct;
+        QAction *exitAct;
 
-	QSlider *createSlider();
-	QSlider *createZoomSlider();
+        QSlider *createSlider();
+        QSlider *createZoomSlider();
 
-	GLWidget *glWidget;
-	QSlider  *xSlider;
-	QSlider  *ySlider;
-	QSlider  *zSlider;
-	QSlider  *disSlider;
+        GLWidget *glWidget;
+        QSlider  *xSlider;
+        QSlider  *ySlider;
+        QSlider  *zSlider;
+        QSlider  *disSlider;
 };
 
 #endif // WINDOW_H

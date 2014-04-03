@@ -30,14 +30,14 @@
 class Console
 {
 
-public:
-    Console();
-    ~Console();
+    public:
+        Console();
+        ~Console();
 
-protected:
+    protected:
 
-private:
-    void alloc();
+    private:
+        void alloc();
 
 };
 

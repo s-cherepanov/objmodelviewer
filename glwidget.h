@@ -31,50 +31,50 @@
 
 class GLWidget : public QGLWidget
 {
-	Q_OBJECT
+        Q_OBJECT
 
-public:
-	GLWidget(QWidget *parent = 0);
+    public:
+        GLWidget(QWidget *parent = 0);
 
-	QColor bgColor;
-	QSize sizeHint() const;
-	QSize minimumSizeHint() const;
-	void readFromFile(char *file);
+        QColor bgColor;
+        QSize sizeHint() const;
+        QSize minimumSizeHint() const;
+        void readFromFile(char *file);
 
-public slots:
-		void SetWireframe(bool value);
-		void setSmooth(bool value);
-		void SetStats(bool value);
-		void setXRotation(int angle);
-		void setYRotation(int angle);
-		void setZRotation(int angle);
-		void setDistance(int dis);
+    public slots:
+        void SetWireframe(bool value);
+        void setSmooth(bool value);
+        void SetStats(bool value);
+        void setXRotation(int angle);
+        void setYRotation(int angle);
+        void setZRotation(int angle);
+        void setDistance(int dis);
 
-signals:
-		void xRotationChanged(int angle);
-		void yRotationChanged(int angle);
-		void zRotationChanged(int angle);
+    signals:
+        void xRotationChanged(int angle);
+        void yRotationChanged(int angle);
+        void zRotationChanged(int angle);
 
-		void distanceChanged(int dis);
+        void distanceChanged(int dis);
 
-protected:
-	void initializeGL();
-	void paintGL();
-	void resizeGL(int width, int height);
-	void updateView();
-	void mousePressEvent(QMouseEvent *event);
-	void mouseMoveEvent(QMouseEvent *event);
-	void wheelEvent(QWheelEvent *event);
+    protected:
+        void initializeGL();
+        void paintGL();
+        void resizeGL(int width, int height);
+        void updateView();
+        void mousePressEvent(QMouseEvent *event);
+        void mouseMoveEvent(QMouseEvent *event);
+        void wheelEvent(QWheelEvent *event);
 
-private:
-	int xRot;
-	int yRot;
-	int zRot;
-	int disPos;
-	int windowWidth;
-	int windowHeight;
-	double aspectRatio;
-	QPoint lastPos;
+    private:
+        int xRot;
+        int yRot;
+        int zRot;
+        int disPos;
+        int windowWidth;
+        int windowHeight;
+        double aspectRatio;
+        QPoint lastPos;
 };
 
 #endif // GLWIDGET_H

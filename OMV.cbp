@@ -15,8 +15,9 @@
 		</Option>
 		<Build>
 			<Target title="Debug">
-				<Option output="Release\viewer - debug" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+				<Option output="bin/viewer - debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -24,8 +25,9 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="Release\viewer" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -36,8 +38,9 @@
 				</Linker>
 			</Target>
 			<Target title="Release (GUI)">
-				<Option output="Release\viewer" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
@@ -63,71 +66,71 @@
 			<Add library="$(#glut.lib)\glut32.lib" />
 		</Linker>
 		<ExtraCommands>
-			<Add before="$(#qt4)\bin\moc glwidget.h -o Generated\glwidget_moc.cpp" />
-			<Add before="$(#qt4)\bin\uic window.ui -o Generated\window_ui.h" />
-			<Add before="$(#qt4)\bin\moc window.h -o Generated\window_moc.cpp" />
-			<Add before="$(#qt4)\bin\rcc resources.qrc -o Generated\resources.cpp" />
+			<Add before="$(#qt4.bin)\moc glwidget.h -o generated\glwidget_moc.cpp" />
+			<Add before="$(#qt4.bin)\uic window.ui -o generated\window_ui.h" />
+			<Add before="$(#qt4.bin)\moc window.h -o generated\window_moc.cpp" />
+			<Add before="$(#qt4.bin)\rcc resources.qrc -o generated\resources.cpp" />
 		</ExtraCommands>
-		<Unit filename="Generated\glwidget_moc.cpp">
-			<Option virtualFolder="OpenGL\Widget\" />
+		<Unit filename="Generated/glwidget_moc.cpp">
+			<Option virtualFolder="OpenGL/Widget/" />
 		</Unit>
-		<Unit filename="Generated\resources.cpp">
-			<Option virtualFolder="System\Resources\" />
+		<Unit filename="Generated/resources.cpp">
+			<Option virtualFolder="System/Resources/" />
 		</Unit>
-		<Unit filename="Generated\window_moc.cpp">
-			<Option virtualFolder="Window\" />
+		<Unit filename="Generated/window_moc.cpp">
+			<Option virtualFolder="Window/" />
 		</Unit>
-		<Unit filename="Generated\window_ui.h">
-			<Option virtualFolder="Window\" />
+		<Unit filename="Generated/window_ui.h">
+			<Option virtualFolder="Window/" />
 		</Unit>
 		<Unit filename="OMV.cpp">
-			<Option virtualFolder="System\" />
+			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="console.cpp">
-			<Option virtualFolder="System\Console\" />
+			<Option virtualFolder="System/Console/" />
 		</Unit>
 		<Unit filename="console.h">
-			<Option virtualFolder="System\Console\" />
+			<Option virtualFolder="System/Console/" />
 		</Unit>
 		<Unit filename="glm.cpp">
-			<Option virtualFolder="OpenGL\Model\" />
+			<Option virtualFolder="OpenGL/Model/" />
 		</Unit>
 		<Unit filename="glm.h">
-			<Option virtualFolder="OpenGL\Model\" />
+			<Option virtualFolder="OpenGL/Model/" />
 		</Unit>
 		<Unit filename="glmimg.cpp">
-			<Option virtualFolder="OpenGL\Model\" />
+			<Option virtualFolder="OpenGL/Model/" />
 		</Unit>
 		<Unit filename="global.h">
-			<Option virtualFolder="System\" />
+			<Option virtualFolder="System/" />
 		</Unit>
 		<Unit filename="glwidget.cpp">
-			<Option virtualFolder="OpenGL\Widget\" />
+			<Option virtualFolder="OpenGL/Widget/" />
 		</Unit>
 		<Unit filename="glwidget.h">
-			<Option virtualFolder="OpenGL\Widget\" />
+			<Option virtualFolder="OpenGL/Widget/" />
 		</Unit>
 		<Unit filename="resources.qrc">
-			<Option virtualFolder="System\Resources\" />
+			<Option virtualFolder="System/Resources/" />
 		</Unit>
 		<Unit filename="resources.rc">
 			<Option compilerVar="WINDRES" />
-			<Option virtualFolder="System\Resources\" />
+			<Option virtualFolder="System/Resources/" />
 		</Unit>
 		<Unit filename="texture.cpp">
-			<Option virtualFolder="OpenGL\Model\Texture\" />
+			<Option virtualFolder="OpenGL/Model/Texture/" />
 		</Unit>
 		<Unit filename="texture.h">
-			<Option virtualFolder="OpenGL\Model\Texture\" />
+			<Option virtualFolder="OpenGL/Model/Texture/" />
 		</Unit>
 		<Unit filename="window.cpp">
-			<Option virtualFolder="Window\" />
+			<Option virtualFolder="Window/" />
 		</Unit>
 		<Unit filename="window.h">
-			<Option virtualFolder="Window\" />
+			<Option virtualFolder="Window/" />
 		</Unit>
 		<Unit filename="window.ui">
-			<Option virtualFolder="Window\" />
+			<Option virtualFolder="Window/" />
 		</Unit>
 		<Extensions>
 			<code_completion />

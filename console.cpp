@@ -46,14 +46,14 @@ Console::~Console()
 
 void Console::alloc()
 {
-	AllocConsole();
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONIN$", "r", stdin);
-	std::ios::sync_with_stdio();
+    AllocConsole();
+    freopen("CONOUT$", "w", stdout);
+    freopen("CONIN$", "r", stdin);
+    std::ios::sync_with_stdio();
     printf("=================================================\n");
-	printf("               OMV debug console                 \n");
-	printf("                 version " + QByteArray(APP_FILEVER) + "\n");
-	printf("=================================================\n");
+    printf("               OMV debug console                 \n");
+    printf("                 version " + QByteArray(APP_FILEVER) + "\n");
+    printf("=================================================\n");
 }
 
 /*======================================= PROTECTED ======================================*/

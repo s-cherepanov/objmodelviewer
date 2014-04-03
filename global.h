@@ -27,7 +27,7 @@
 
 
 #define APP_VERSION         1,4,0,0
-#define APP_FILEICON        "Resources/icon.ico"
+#define APP_FILEICON        "resources/icon.ico"
 #define APP_COMPANY         ""
 #define APP_FILEVER         "1.4.0"
 #define APP_FILEDESC        ""

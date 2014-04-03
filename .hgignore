@@ -5,12 +5,12 @@ syntax: glob
 Thumbs.db
 Desktop.ini
 .cmd.bat
-Release/*.exe
+bin/*.exe
 
 # File patterns
 *.layout
 *.depend
 
 # Specific folders
-Generated
+generated
 obj
