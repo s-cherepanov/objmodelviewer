@@ -25,7 +25,7 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
-#include "Generated/window_ui.h"
+#include "generated/window_ui.h"
 
 /*======================================== CLASSES =======================================*/
 
