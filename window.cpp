@@ -172,7 +172,7 @@ void Window::About()
     QMessageBox::about(this, "About " + QString(APP_PRODUCTNAME),
                        QString("<b>%1</b>, version <b>%2</b><br>").arg(APP_PRODUCTNAME).arg(APP_FILEVER) +
                        QString("<b>author:</b> %1<br>").arg(APP_COPYRIGHT) +
-                       QString("<b>website:</b> <a href=\"%1\">sourceforge</a><br>").arg(APP_PRODUCTURL) +
+                       QString("<b>website:</b> <a href=\"%1\">sourceforge.net</a><br>").arg(APP_PRODUCTURL) +
                        QString("<br>For more information check the readme file."));
 }
 

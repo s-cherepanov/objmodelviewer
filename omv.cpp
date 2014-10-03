@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     QStringList arguments = app.arguments();
     arguments.takeFirst();
 
-    // debug step is a priority
+    // debug step takes a priority
     #ifdef _WIN32
     foreach(QString argument, arguments) {
         if (argument == "debug") {
