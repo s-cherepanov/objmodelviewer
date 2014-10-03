@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2011 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -29,21 +29,23 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <windows.h>
-#include <GL/glut.h>
+
+#include <QtCore/QTime>
+
+#include <QtCore/QDebug>
 
 #include "glm.h"
 
 /*======================================== PUBLIC ========================================*/
+
+QTime fpsTime;
+int fps, frames, elapsedTime, baseTime;
 
 bool     wireframe = false;
 bool     stats     = true;
 bool     smooth    = true;
 char     *model    = NULL;
 GLMmodel *pmodel1  = NULL;
-
-int     FPS = 0, Frames = 0;
-DWORD   LastFPS = 0;
 
 GLWidget::GLWidget(QWidget *parent) :
     QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
@@ -166,19 +168,19 @@ void GLWidget::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
 
-    // fps
-    if ( GetTickCount() - LastFPS >= 1000 ) {
-        LastFPS = GetTickCount();
-        FPS = Frames;
-        Frames = 0;
+    frames++;
+    elapsedTime = fpsTime.elapsed();
+
+    if(elapsedTime - baseTime > 1000) {
+        fps = frames * 1000.0/(elapsedTime-baseTime);
+        baseTime = elapsedTime;
+        frames = 0;
     }
-    Frames++;
 
     glTranslatef(0.0, 0.0, -10.0);
     glRotatef(xRot / 16.0, 1.0, 0.0, 0.0);
     glRotatef(yRot / 16.0, 0.0, 1.0, 0.0);
     glRotatef(zRot / 16.0, 0.0, 0.0, 1.0);
-    updateView();
 
     if (wireframe) {
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -218,25 +220,19 @@ void GLWidget::paintGL()
         renderText(20,80,   QString("textures: ")   + QString::number(numtextures));
         renderText(20,95,   QString("normals: ")    + QString::number(numnormals));
         renderText(20,110,  QString("groups: ")     + QString::number(numgroups));
-        renderText(20,125,  QString("fps: ")        + QString::number(FPS));
+        renderText(20,125,  QString("fps: ")        + QString::number(fps));
     }
 }
 
 void GLWidget::resizeGL(int width, int height)
 {
-    windowWidth = width;
-    windowHeight = height;
     aspectRatio = (double)width/(double)height;
     glViewport(0, 0, width, height);
-    updateView();
-}
 
-void GLWidget::updateView()
-{
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
-    if (windowWidth > windowHeight) {
+    if (width > height) {
         glOrtho((-0.5 + disPos)*aspectRatio, (+0.5 - disPos)*aspectRatio,
                 -0.5 + disPos, +0.5 - disPos, 4.0, 15.0);
     } else {

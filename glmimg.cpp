@@ -1,11 +1,9 @@
 #include <string.h>
 #include <math.h>
 #include "texture.h"
-#include <windows.h>
 #include <GL/glext.h>
+#include <GL/glu.h>
 #include "glm.h"
-
-
 
 #ifndef GL_BGR
 #define GL_BGR GL_BGR_EXT
@@ -42,7 +40,7 @@ GLuint glmLoadTexture(char *filename, GLboolean alpha, GLboolean repeat, GLboole
     if (data == NULL) {
         char err[80];
         sprintf(err,"Nu am putut incarca o textura %s!",numefis);
-        MessageBoxA(NULL, err, "ERROR", NULL);
+        //MessageBoxA(NULL, err, "ERROR", NULL);
     }
 
 

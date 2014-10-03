@@ -14,9 +14,7 @@
 
  */
 
-#include <windows.h>
-#include <GL/glut.h>
-
+#include <GL/gl.h>
 
 #ifndef M_PI
 #define M_PI 3.14159265f

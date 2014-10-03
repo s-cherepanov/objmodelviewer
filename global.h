@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2012 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -26,10 +26,10 @@
 #define GLOBAL_H
 
 
-#define APP_VERSION         1,4,0,0
+#define APP_VERSION         1,4,2,0
 #define APP_FILEICON        "resources/icon.ico"
 #define APP_COMPANY         ""
-#define APP_FILEVER         "1.4.0"
+#define APP_FILEVER         "1.4.2"
 #define APP_FILEDESC        ""
 #define APP_INTERNALNAME    ""
 #define APP_COPYRIGHT       "Marcin Piotrowski"

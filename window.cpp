@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2011 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -26,6 +26,7 @@
 
 #include <QtCore/QUrl>
 #include <QtCore/QMimeData>
+#include <QtCore/QMutex>
 
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QFileDialog>
@@ -34,12 +35,12 @@
 #include <QtGui/QColorDialog>
 #include <QtGui/QMessageBox>
 
-#include <windows.h>
-
 #include "glwidget.h"
 #include "global.h"
 
 /*======================================== PUBLIC ========================================*/
+
+Window *Window::instance = 0;
 
 Window::Window(QWidget *parent) :
     QMainWindow(parent)
@@ -78,7 +79,7 @@ Window::Window(QWidget *parent) :
     connect(MainWindow.actionWireframe, SIGNAL(triggered()), this, SLOT(IsWireframe()));
     connect(MainWindow.actionBg_color, SIGNAL(triggered()), this, SLOT(PickColor()));
 
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    QHBoxLayout *mainLayout = new QHBoxLayout;
     mainLayout->addWidget(glWidget);
     mainLayout->addWidget(xSlider);
     mainLayout->addWidget(ySlider);
@@ -92,21 +93,43 @@ Window::Window(QWidget *parent) :
     disSlider->setValue(-1);
 }
 
+Window *Window::Instance()
+{
+    static QMutex mutex;
+    if (!instance) {
+        mutex.lock();
+        if (!instance)
+            instance = new Window;
+        mutex.unlock();
+    }
+    return instance;
+}
+
+void Window::Drop()
+{
+    static QMutex mutex;
+    mutex.lock();
+    delete instance;
+    instance = 0;
+    mutex.unlock();
+}
+
 /*===================================== PUBLIC SLOTS =====================================*/
 
 bool Window::openFile(const QString &Path)
 {
-    if (Path.isNull())
+    QString fileName = Path;
+    if (fileName.isEmpty()) {
         fileName = QFileDialog::getOpenFileName(this,"Choose a file to open",
-                                                NULL, "wavefront format (*.obj)");
-    else fileName = Path;
-
-    if (!fileName.isEmpty()) {
-        glWidget->readFromFile(fileName.toUtf8().data());
-        setWindowTitle(QString("%1 ( %2 )").arg(APP_PRODUCTNAME).arg(fileName));
-        return true;
+                                            QDir::currentPath(),
+                                            "wavefront format (*.obj)");
+        if (fileName.isEmpty())
+            return false;
     }
-    return false;
+
+    glWidget->readFromFile(fileName.toUtf8().data());
+    setWindowTitle(QString("%1 ( %2 )").arg(APP_PRODUCTNAME).arg(fileName));
+    return true;
 }
 
 /*===================================== PRIVATE SLOTS ====================================*/
@@ -165,7 +188,6 @@ void Window::keyPressEvent(QKeyEvent *event)
 
 void Window::dragEnterEvent(QDragEnterEvent *event)
 {
-
     const QMimeData *MimeData = event->mimeData();
     if (MimeData->hasUrls()) {
         QList<QUrl> UrlList = MimeData->urls();

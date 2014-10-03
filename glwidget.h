@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2011 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -61,7 +61,6 @@ class GLWidget : public QGLWidget
         void initializeGL();
         void paintGL();
         void resizeGL(int width, int height);
-        void updateView();
         void mousePressEvent(QMouseEvent *event);
         void mouseMoveEvent(QMouseEvent *event);
         void wheelEvent(QWheelEvent *event);

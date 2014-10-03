@@ -6,6 +6,8 @@ Thumbs.db
 Desktop.ini
 .cmd.bat
 bin/*.exe
+bin/*.dll
+bin/*.so.4
 
 # File patterns
 *.layout

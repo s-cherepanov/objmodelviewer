@@ -1,5 +1,9 @@
 #include "texture.h"
 
+#include <QtGui/QMessageBox>
+
+#include "window.h"
+
 TGAHeader tgaheader;                                    // TGA header
 TGA tga;                                                // TGA image data
 
@@ -13,12 +17,12 @@ bool LoadTGA(Texture *texture, char *filename)                  // Load a TGA fi
     //fTGA = fopen("textura_perete.tga","rb");
 
     if (fTGA == NULL) {                                         // If it didn't open....
-        MessageBoxA(NULL, "Could not open texture file", filename, MB_OK);  // Display an error message
+        QMessageBox::warning(Window::Instance(), "Could not open texture file", filename);  // Display an error message
         return false;                                                       // Exit function
     }
 
     if (fread(&tgaheader, sizeof(TGAHeader), 1, fTGA) == 0) {               // Attempt to read 12 byte header from file
-        MessageBoxA(NULL, "Could not read file header", filename, MB_OK);       // If it fails, display an error message
+        QMessageBox::warning(Window::Instance(), "Could not read file header", filename);       // If it fails, display an error message
         if (fTGA != NULL) {                                                 // Check to seeiffile is still open
             fclose(fTGA);                                                   // If it is, close it
         }
@@ -32,7 +36,7 @@ bool LoadTGA(Texture *texture, char *filename)                  // Load a TGA fi
         // an RLE compressed TGA image
         LoadCompressedTGA(texture, filename, fTGA);                         // If so, jump to Compressed TGA loading code
     } else {                                                                // If header matches neither type
-        MessageBoxA(NULL, "TGA file be type 2 or type 10 ", filename, MB_OK);   // Display an error
+        QMessageBox::warning(Window::Instance(), "TGA file be type 2 or type 10 ", filename);   // Display an error
         fclose(fTGA);
         return false;                                                               // Exit function
     }
@@ -43,7 +47,7 @@ bool LoadUncompressedTGA(Texture *texture, char *filename, FILE *fTGA)      // L
 {
     // TGA Loading code nehe.gamedev.net)
     if (fread(tga.header, sizeof(tga.header), 1, fTGA) == 0) {              // Read TGA header
-        MessageBoxA(NULL, "Could not read info header", "ERROR", MB_OK);        // Display error
+        QMessageBox::warning(Window::Instance(), "Could not read info header", "ERROR");        // Display error
         if (fTGA != NULL) {                                                 // if file is still open
             fclose(fTGA);                                                   // Close it
         }
@@ -58,7 +62,7 @@ bool LoadUncompressedTGA(Texture *texture, char *filename, FILE *fTGA)      // L
     tga.Bpp         = texture->bpp;                                         // Copy BPP into local structure
 
     if ((texture->width <= 0) || (texture->height <= 0) || ((texture->bpp != 24) && (texture->bpp !=32))) { // Make sure all information is valid
-        MessageBoxA(NULL, "Invalid texture information", filename, MB_OK);  // Display Error
+        QMessageBox::warning(Window::Instance(), "Invalid texture information", filename);  // Display Error
         if (fTGA != NULL) {                                                 // Check if file is still open
             fclose(fTGA);                                                   // If so, close it
         }
@@ -75,13 +79,13 @@ bool LoadUncompressedTGA(Texture *texture, char *filename, FILE *fTGA)      // L
     texture->imageData  = (GLubyte *)malloc(tga.imageSize);                 // Allocate that much memory
 
     if (texture->imageData == NULL) {                                       // If no space was allocated
-        MessageBoxA(NULL, "Could not allocate memory for image", filename, MB_OK);  // Display Error
+        QMessageBox::warning(Window::Instance(), "Could not allocate memory for image", filename);  // Display Error
         fclose(fTGA);                                                       // Close the file
         return false;                                                       // Return failed
     }
 
     if (fread(texture->imageData, 1, tga.imageSize, fTGA) != tga.imageSize) { // Attempt to read image data
-        MessageBoxA(NULL, "Could not read image data", "ERROR", MB_OK);     // Display Error
+        QMessageBox::warning(Window::Instance(), "Could not read image data", "ERROR");     // Display Error
         if (texture->imageData != NULL) {                                   // If imagedata has data in it
             free(texture->imageData);                                       // Delete data from memory
         }
@@ -134,7 +138,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
     texture->imageData  = (GLubyte *)malloc(tga.imageSize);                 // Allocate that much memory
 
     if (texture->imageData == NULL) {                                       // If it wasnt allocated correctly..
-        MessageBoxA(NULL, "Could not allocate memory for image", filename, MB_OK);  // Display Error
+        QMessageBox::warning(Window::Instance(), "Could not allocate memory for image", filename);  // Display Error
         fclose(fTGA);                                                       // Close file
         return false;                                                       // Return failed
     }
@@ -148,7 +152,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
         GLubyte chunkheader = 0;                                            // Storage for "chunk" header
 
         if (fread(&chunkheader, sizeof(GLubyte), 1, fTGA) == 0) {           // Read in the 1 byte header
-            MessageBoxA(NULL, "Could not read RLE header", filename, MB_OK);    // Display Error
+            QMessageBox::warning(Window::Instance(), "Could not read RLE header", filename);    // Display Error
             if (fTGA != NULL) {                                             // If file is open
                 fclose(fTGA);                                               // Close file
             }
@@ -163,7 +167,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
             chunkheader++;                                                  // add 1 to get number of following color values
             for (short counter = 0; counter < chunkheader; counter++) {     // Read RAW color values
                 if (fread(colorbuffer, 1, tga.bytesPerPixel, fTGA) != tga.bytesPerPixel) { // Try to read 1 pixel
-                    MessageBoxA(NULL, "Could not read image data", filename, MB_OK);        // IF we cant, display an error
+                    QMessageBox::warning(Window::Instance(), "Could not read image data", filename);        // IF we cant, display an error
 
                     if (fTGA != NULL) {                                                 // See if file is open
                         fclose(fTGA);                                                   // If so, close file
@@ -192,7 +196,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
                 currentpixel++;                                                         // Increase current pixel by 1
 
                 if (currentpixel > pixelcount) {                                        // Make sure we havent read too many pixels
-                    MessageBoxA(NULL, "Too many pixels read", filename, NULL);          // if there is too many... Display an error!
+                    QMessageBox::warning(Window::Instance(), "Too many pixels read", filename);          // if there is too many... Display an error!
 
                     if (fTGA != NULL) {                                                 // If there is a file open
                         fclose(fTGA);                                                   // Close file
@@ -212,7 +216,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
         } else {                                                                        // chunkheader > 128 RLE data, next color reapeated chunkheader - 127 times
             chunkheader -= 127;                                                         // Subteact 127 to get rid of the ID bit
             if (fread(colorbuffer, 1, tga.bytesPerPixel, fTGA) != tga.bytesPerPixel) {  // Attempt to read following color values
-                MessageBoxA(NULL, "Could not read from file", filename, MB_OK);         // If attempt fails.. Display error (again)
+                QMessageBox::warning(Window::Instance(), "Could not read from file", filename);         // If attempt fails.. Display error (again)
 
                 if (fTGA != NULL) {                                                     // If thereis a file open
                     fclose(fTGA);                                                       // Close it
@@ -243,7 +247,7 @@ bool LoadCompressedTGA(Texture *texture, char *filename, FILE *fTGA)        // L
                 currentpixel++;                                                         // Increase pixel count by 1
 
                 if (currentpixel > pixelcount) {                                        // Make sure we havent written too many pixels
-                    MessageBoxA(NULL, "Too many pixels read", filename, NULL);          // if there is too many... Display an error!
+                    QMessageBox::warning(Window::Instance(), "Too many pixels read", filename);          // if there is too many... Display an error!
 
                     if (fTGA != NULL) {                                                 // If there is a file open
                         fclose(fTGA);                                                   // Close file

@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2011 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -41,6 +41,8 @@ class Window : public QMainWindow
 
     public:
         Window(QWidget *parent = 0);
+        static Window *Instance();
+        static void Drop();
 
     public slots:
         bool openFile(const QString &Path = QString());
@@ -62,9 +64,11 @@ class Window : public QMainWindow
         void dropEvent(QDropEvent *event);
 
     private:
+        Window(const Window &);
+        Window &operator=(const Window &);
+        static Window *instance;
         Ui_windowClass MainWindow;
 
-        QString fileName;
         QAction *openAct;
         QAction *OptionsAct;
         QAction *AboutAct;

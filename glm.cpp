@@ -20,7 +20,6 @@
 #include <assert.h>
 #include "glm.h"
 
-
 //#define DebugVisibleSurfaces
 
 #define total_textures 5

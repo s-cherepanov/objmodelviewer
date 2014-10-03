@@ -5,7 +5,7 @@
 **
 ** Copyright (C) 2011 Marcin Piotrowski.
 ** All rights reserved.
-** Contact: Techvoid (contact@techvoid.net)
+** http://sourceforge.net/projects/objmodelviewer/
 **
 ** This program is free software: you can redistribute it and/or modify it under the terms
 ** of the GNU General Public License as published by the Free Software Foundation, either
@@ -27,10 +27,11 @@
 
 #include <QtCore/QFileInfo>
 
+#ifdef _WIN32
 #include <windows.h>
+#endif
 
 #include "window.h"
-#include "console.h"
 
 /*======================================== GLOBAL ========================================*/
 
@@ -40,25 +41,35 @@ int main(int argc, char *argv[])
     QStringList arguments = app.arguments();
     arguments.takeFirst();
 
-    Window win;
-    win.resize(win.sizeHint());
+    // debug step is a priority
+    #ifdef _WIN32
+    foreach(QString argument, arguments) {
+        if (argument == "debug") {
+            AllocConsole();
+            freopen("CONOUT$", "w", stdout);
+            freopen("CONIN$", "r", stdin);
+            std::ios::sync_with_stdio();
+        }
+    }
+    #endif
+
+    Window *win = Window::Instance();
+    win->resize(win->sizeHint());
 
     foreach(QString argument, arguments) {
         QFileInfo file(argument);
         if (file.isFile())
-            win.openFile(file.fileName());
-
-        if (argument == "debug")
-            Console con;
+            win->openFile(file.canonicalFilePath());
     }
 
     int desktopArea = QApplication::desktop()->width() *
                       QApplication::desktop()->height();
-    int widgetArea = win.width() * win.height();
-    if (((float)widgetArea / (float)desktopArea) < 0.75f)
-        win.show();
-    else
-        win.showMaximized();
+    int widgetArea = win->width() * win->height();
+    if (((float)widgetArea / (float)desktopArea) < 0.75f) {
+        win->show();
+    } else {
+        win->showMaximized();
+    }
 
     return app.exec();
 }
