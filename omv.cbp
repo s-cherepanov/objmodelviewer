@@ -6,7 +6,7 @@
 		<Option platforms="Windows;Unix;" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="OpenGL\;OpenGL\;OpenGL\;OpenGL\Model\;OpenGL\;OpenGL\Model\Texture\;OpenGL\Widget\;OpenGL\;OpenGL\;Window\;System\;System\Resources\;" />
+		<Option virtualFolders="OpenGL/;OpenGL/;OpenGL/;OpenGL/Model/;OpenGL/;OpenGL/Model/Texture/;OpenGL/Widget/;OpenGL/;OpenGL/;Window/;System/;System/Resources/;" />
 		<Option show_notes="1">
 			<notes>
 				<![CDATA[Project uses the following libraries:
@@ -16,8 +16,8 @@
 		<Build>
 			<Target title="win32-debug">
 				<Option platforms="Windows;" />
-				<Option output="bin/win32/viewer-debug" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/win32" />
+				<Option output="bin/viewer-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/win32/debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -28,15 +28,15 @@
 					<Add option="-static" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="$(#qt4.lib)\QtCore4.dll" />
-					<Add library="$(#qt4.lib)\QtGui4.dll" />
-					<Add library="$(#qt4.lib)\QtOpenGL4.dll" />
+					<Add library="$(#qt4.lib)/QtCore4.dll" />
+					<Add library="$(#qt4.lib)/QtGui4.dll" />
+					<Add library="$(#qt4.lib)/QtOpenGL4.dll" />
 				</Linker>
 			</Target>
 			<Target title="win32-release">
 				<Option platforms="Windows;" />
-				<Option output="bin/win32/viewer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/win32" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/win32/release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -48,15 +48,15 @@
 					<Add option="-static" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="$(#qt4.lib)\QtCore4.dll" />
-					<Add library="$(#qt4.lib)\QtGui4.dll" />
-					<Add library="$(#qt4.lib)\QtOpenGL4.dll" />
+					<Add library="$(#qt4.lib)/QtCore4.dll" />
+					<Add library="$(#qt4.lib)/QtGui4.dll" />
+					<Add library="$(#qt4.lib)/QtOpenGL4.dll" />
 				</Linker>
 			</Target>
 			<Target title="win32-release(gui)">
 				<Option platforms="Windows;" />
-				<Option output="bin/win32/viewer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/win32" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/win32/release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -68,15 +68,15 @@
 					<Add option="-static" />
 					<Add library="opengl32" />
 					<Add library="glu32" />
-					<Add library="$(#qt4.lib)\QtCore4.dll" />
-					<Add library="$(#qt4.lib)\QtGui4.dll" />
-					<Add library="$(#qt4.lib)\QtOpenGL4.dll" />
+					<Add library="$(#qt4.lib)/QtCore4.dll" />
+					<Add library="$(#qt4.lib)/QtGui4.dll" />
+					<Add library="$(#qt4.lib)/QtOpenGL4.dll" />
 				</Linker>
 			</Target>
 			<Target title="linux-debug">
 				<Option platforms="Unix;" />
-				<Option output="bin/linux/viewer-debug" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/linux" />
+				<Option output="bin/viewer-debug" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/linux/debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -86,15 +86,15 @@
 				<Linker>
 					<Add library="libGL" />
 					<Add library="libGLU" />
-					<Add library="$(#qt4.lib)\libQtCore.so" />
-					<Add library="$(#qt4.lib)\libQtGui.so" />
-					<Add library="$(#qt4.lib)\libQtOpenGL.so" />
+					<Add library="$(#qt4.lib)/libQtCore.so" />
+					<Add library="$(#qt4.lib)/libQtGui.so" />
+					<Add library="$(#qt4.lib)/libQtOpenGL.so" />
 				</Linker>
 			</Target>
 			<Target title="linux-release">
 				<Option platforms="Unix;" />
-				<Option output="bin/linux/viewer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/linux" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/linux/release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -105,15 +105,15 @@
 					<Add option="-s" />
 					<Add library="libGL" />
 					<Add library="libGLU" />
-					<Add library="$(#qt4.lib)\libQtCore.so" />
-					<Add library="$(#qt4.lib)\libQtGui.so" />
-					<Add library="$(#qt4.lib)\libQtOpenGL.so" />
+					<Add library="$(#qt4.lib)/libQtCore.so" />
+					<Add library="$(#qt4.lib)/libQtGui.so" />
+					<Add library="$(#qt4.lib)/libQtOpenGL.so" />
 				</Linker>
 			</Target>
 			<Target title="linux-release(gui)">
 				<Option platforms="Unix;" />
-				<Option output="bin/linux/viewer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/linux" />
+				<Option output="bin/viewer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/" />
 				<Option object_output="obj/linux/release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -124,9 +124,9 @@
 					<Add option="-s" />
 					<Add library="libGL" />
 					<Add library="libGLU" />
-					<Add library="$(#qt4.lib)\libQtCore.so" />
-					<Add library="$(#qt4.lib)\libQtGui.so" />
-					<Add library="$(#qt4.lib)\libQtOpenGL.so" />
+					<Add library="$(#qt4.lib)/libQtCore.so" />
+					<Add library="$(#qt4.lib)/libQtGui.so" />
+					<Add library="$(#qt4.lib)/libQtOpenGL.so" />
 				</Linker>
 			</Target>
 		</Build>
