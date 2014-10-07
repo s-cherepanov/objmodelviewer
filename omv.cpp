@@ -27,7 +27,7 @@
 
 #include <QtCore/QFileInfo>
 
-#ifdef _WIN32
+#ifdef Q_OS_WIN
 #include <windows.h>
 #endif
 
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     arguments.takeFirst();
 
     // debug step takes a priority
-    #ifdef _WIN32
+    #ifdef Q_OS_WIN
     foreach(QString argument, arguments) {
         if (argument == "debug") {
             AllocConsole();
